@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VIPRA - Contacts Info</title>
+    <style type="text/css">
+        body {
+            background-color: lightblue;
+        }
+    </style>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#form1").submit(function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/contact',
+                    data: $('#form1').serialize(),
+                    dataType: "json",
+                    success: function (response) {
+                        //console.log('response');
+                        clearInputs();
+                        Show();
+                        //$( "#a" ).click();
+                    },
+                    error: function () {
+                    }
+                })
+            });
+
+            $('table').on('click', '.update-button', function () {
+                //alert('asssaaa');
+                var rowEl = $(this).closest('tr');
+                var id = rowEl.find('.id').text();
+                var name = rowEl.find('.name').val();
+                var email = rowEl.find('.email').val();
+                var mobile = rowEl.find('.mobile').val();
+
+                $.ajax({
+                    url: '/contact/' + id,
+                    method: 'PUT',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ name: name, email: email, mobile: mobile }),
+                    success: function (response) {
+                        console.log(response,'--------------------');
+                        $("#a").click();
+                    }
+                });
+
+            });
+            $('table').on('click', '.delete-button', function () {
+                // alert("DELETE");
+                var rowEl = $(this).closest('tr');
+                var id = rowEl.find('.id').text();
+
+                $.ajax({
+                    url: '/contact/' + id,
+                    method: 'DELETE',
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log("response" + response);
+                        $("#a").click();
+                    }
+                });
+            });
+
+            $("#a").click(function () {
+                Show();
+            });
+            function Show() {
+                // alert("Show");
+                $.ajax({
+                    type: 'GET',
+                    url: '/contact',
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response);
+                        var tbodyEl = $('tbody');
+
+                        tbodyEl.html('');
+
+                        response.forEach(function (contact) {
+                            tbodyEl.append('\
+                        <tr>\
+                        <td class="id">' + contact.unique_id + '</td>\
+                        <td><input type="text" class="name" value="' + contact.name + '"></td>\
+                        <td><input type="text" class="email" value="' + contact.email + '"></td>\
+                        <td><input type="text" class="mobile" value="' + contact.mobile + '"></td>\
+                        <td>\
+                        <button class="update-button">UPDATE</button>\
+                        <button class="delete-button">DELETE</button>\
+                        </td>\
+                        </tr>\
+                        ');
+                        });
+                    },
+                    error: function () {
+                    }
+                })
+            }
+
+            function clearInputs() {
+                $("#name").val('');
+                $("#email").val('');
+                $("#mobile").val('');
+            }
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <button id="a">View All Contacts</button>
+    <form id="form1" method="POST">
+        <label>Name:</label><input type="text" name="name" id="name" required>
+        <br />
+        <label>Email:</label><input type="text" name="email" id="email" required>
+        <br />
+        <label>Mobile:</label><input type="text" name="mobile" id="mobile" required>
+        <br />
+        <button type="Submit" id="add">Submit</button>
+    </form>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
