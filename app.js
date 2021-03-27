@@ -10,9 +10,9 @@ const bodyParser = require('body-parser');
 const index = require('./routes/index');
 // var users = require('./routes/users');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://anusha123:anusha123@cluster0.vfe87.mongodb.net/contacts?retryWrites=true&w=majority');
-//const localhost_mongo = 'mongodb://localhost:27017';
-//mongoose.connect(localhost_mongo);
+// const mongo_url = 'mongodb+srv://anusha123:anusha123@cluster0.vfe87.mongodb.net/contacts?retryWrites=true&w=majority'
+const localhost_mongo = 'mongodb://localhost:27017'
+mongoose.connect(localhost_mongo, { useNewUrlParser: true });
 
 const app = express();
 
