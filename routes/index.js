@@ -27,7 +27,7 @@ router.post('/api/contact', function(req, res, next) {
     Contact.findOne({}, function(err, data) {
       if (data) {
         console.log('if');
-        c = data.unique_id + 1
+        c = data.unique_id + 1;
       }
 
       const newContact = new Contact({
@@ -41,7 +41,7 @@ router.post('/api/contact', function(req, res, next) {
         if (err2) {
           console.log(err2);
           res.json({Status: '500', "message": "Internal Server Error: Failed to add a contact"})
-        }
+        } 
           console.log('Success');
           res.json({Status: '200', "message": "Success: Contact created successfully"});
         
@@ -65,7 +65,7 @@ router.get('/api/contact', function(req, res, next) {
  */
 router.put('/api/contact/:id', function(req, res) {
   const id = req.params.id;
-  
+  console.log('id' + id);
   const contactInfo = req.body;
   console.log("contact info", contactInfo);
   
@@ -90,7 +90,7 @@ router.delete('/api/contact/:id', function(req, res) {
   Contact.findOneAndRemove({'unique_id': id}, function(err, offer) {
     if(err) 
       return res.status(500).send(err.message);
-    res.status(200).json({"message" : "Delete contact successfully", id});
+    res.status(200).json({"message" : "Deleted contact successfully", id});
   });
   
 });
