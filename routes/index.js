@@ -1,8 +1,8 @@
-
+/* eslint-disable linebreak-style */
 /* eslint-disable indent */
-
+/* eslint-disable linebreak-style */
 /* eslint-disable no-unused-vars */
-
+/* eslint-disable linebreak-style */
 const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
@@ -12,9 +12,27 @@ router.get('/', function(req, res, next) {
   res.render('index', {title: 'Express'});
 });
 
+
+router.get('/', function(req, res, next) {
+  return Contact.find(function(err, clients) {
+    if (!err) {
+      res.render('detail.ejs', {
+        title: 'Details',
+        clients: clients,
+
+      });
+
+      //  console.log(clients);
+    } else {
+      return console.log(err);
+    }
+  });
+});
+
 /**
  * @Create the contact
  */
+
 router.post('/contact', function(req, res, next) {
   console.log(req.body);
   // res.json(req.body);
@@ -50,8 +68,9 @@ router.post('/contact', function(req, res, next) {
 });
 
 /**
- * @Read the contact
+ * @GET list of all the contact
  */
+
 router.get('/contact', function(req, res, next) {
   Contact.find(function(err, response) {
     res.json(response);
@@ -59,8 +78,9 @@ router.get('/contact', function(req, res, next) {
 });
 
 /**
- * @Update the contact
+ * @UPDATE the one single contact using id as a key
  */
+
 router.put('/contact/:id', function(req, res) {
   const id = req.params.id;
   console.log('id' + id);
@@ -77,8 +97,9 @@ router.put('/contact/:id', function(req, res) {
 });
 
 /**
- * @Delete the contact
+ * @DELETE the contact for the provided id
  */
+
 router.delete('/contact/:id', function(req, res) {
   const id = req.params.id;
   console.log('id' + id);
