@@ -27,12 +27,18 @@ Code is Running on
     THis is the API used by the user to submit the input file to create the contacts, which have three fields to fill to add the contact like Name,Email,and Mobile number.
 
     Response:200 OK
+      * POST /api/contact HTTP/1.1
+        Host: localhost:3000
+        Content-Type: application/json
+        Cache-Control: no-cache
+        Postman-Token: ba5ada52-707e-8279-d5a5-570fa805a23b
 
-    {
-	"name":"john",
-	"email":"john123@vipra.com",
-	"mobile":"98760786543"
-	}
+        {
+	     "name":"tom",
+	     "email":"tom123@vipra.com",
+	     "mobile":"99860786543"
+        }
+      "Success: Contact created successfully"  
 
  2. GET/api/contact/1
     This is the API used by the user to get the contacts.
@@ -41,13 +47,13 @@ Code is Running on
     This is the API used by the user to update the contact by specifying the object unique id.
 
     Response:200 OK "Updated contact successfully"
-    Before:   
+    * Before updating:   
            {
 	   "name":"john",
 	   "email":"john123@vipra.com",
 	   "mobile":"98760786543"
 	  }
-    After:
+    * After updated:
          {
 	    "name":"john",
 	    "email":"john101@vipra.com",

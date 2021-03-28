@@ -41,10 +41,10 @@ router.post('/api/contact', function(req, res, next) {
         if (err2) {
           console.log(err2);
           res.json({Status: '500', "message": "Internal Server Error: Failed to add a contact"})
-        } 
+        } else {
           console.log('Success');
           res.json({Status: '200', "message": "Success: Contact created successfully"});
-        
+        }
       });
   });
   }
