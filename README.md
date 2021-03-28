@@ -22,13 +22,13 @@ You need to have installed Node.js, NPM and MongoDB in your System
  * The test results will be shown as below
 
 
-  `vipra contacts test.
-    √ should create contacts (49ms)
-    √ should return all contacts
-    √ should update contact
-    √ should delete contact
+  `vipra contacts test.`
+    * √ should create contacts (49ms)
+    * √ should return all contacts
+    * √ should update contact
+    * √ should delete contact
    
-     4 passing (110ms)`
+    ` 4 passing (110ms)`
 
 Code is Running on 
 + http://localhost:3000/
