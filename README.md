@@ -26,7 +26,7 @@ Code is Running on
  1. POST/api/contact/
     THis is the API used by the user to submit the input file to create the contacts, which have three fields to fill to add the contact like Name,Email,and Mobile number.
 
-    Response:200 OK
+   # Response:200 OK
       * POST /api/contact HTTP/1.1
         Host: localhost:3000
         Content-Type: application/json
@@ -46,13 +46,14 @@ Code is Running on
  3. PUT/api/contact/<:id>
     This is the API used by the user to update the contact by specifying the object unique id.
 
-    Response:200 OK "Updated contact successfully"
+    # Response:200 OK "Updated contact successfully"
     * Before updating:   
-           {
+         {
 	   "name":"john",
 	   "email":"john123@vipra.com",
 	   "mobile":"98760786543"
 	  }
+    
     * After updated:
          {
 	    "name":"john",
