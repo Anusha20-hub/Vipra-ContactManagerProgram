@@ -95,8 +95,8 @@
                         <td><input type="text" class="email" value="' + contact.email + '"></td>\
                         <td><input type="text" class="mobile" value="' + contact.mobile + '"></td>\
                         <td>\
-                        <button class="update-button">UPDATE</button>\
-                        <button class="delete-button">DELETE</button>\
+                        <button class="btn btn-info update-button">UPDATE</button>\
+                        <button class="btn btn-danger delete-button">DELETE</button>\
                         </td>\
                         </tr>\
                         ');
@@ -121,19 +121,24 @@
 <body>
     <h1>Contact Manager Program</h1>
     <hr>
-    <button class="btn btn-primary mb-2" id="a">View All Contacts</button>
+    
     <form id="form1" method="POST">
-        <label>Name:</label><input type="text" name="name" id="name" required>
+        <label><strong>Name:</strong></label><input type="text" name="name" id="name" required>
         <br />
         <br/>
-        <label>Email:</label><input type="text" name="email" id="email" required>
+        <label><strong>Email:</strong></label><input type="text" name="email" id="email" required>
         <br />
         <br/>
-        <label>Mobile:</label><input type="text" name="mobile" id="mobile" required>
+        <label><strong>Mobile:</strong></label><input type="text" name="mobile" id="mobile" required>
         <br />
         <br/>
         <button class="btn btn-success" type="Submit" id="add">Submit</button>
+        <br/>
+        <br/>
+        <button class="btn btn-primary mb-2" id="a">View All Contacts</button>
     </form>
+    <br/>
+    <hr>
     <div>
         <table>
             <thead>
