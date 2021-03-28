@@ -19,6 +19,18 @@ You need to have installed Node.js, NPM and MongoDB in your System
 
 `./node_modules/.bin/mocha`
 
+ * './node_modules/.bin/mocha
+
+
+  vipra contacts test.
+    √ should create contacts (49ms)
+    √ should return all contacts
+    √ should update contact
+    √ should delete contact
+
+
+   4 passing (110ms)`
+
 Code is Running on 
 + http://localhost:3000/
 
