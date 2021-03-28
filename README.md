@@ -47,19 +47,20 @@ Code is Running on
     This is the API used by the user to update the contact by specifying the object unique id.
 
     # Response:200 OK "Updated contact successfully"
-    * Before updating:   
+       * Before updating:   
          {
 	   "name":"john",
 	   "email":"john123@vipra.com",
 	   "mobile":"98760786543"
 	  }
     
-    * After updated:
+      * After updated:
          {
 	    "name":"john",
 	    "email":"john101@vipra.com",
 	    "mobile":"98760786543"
-	  }      
+	  } 
+	  
    4. DELETE/api/contact/<:id>
       This is API used by the user to delete the existing contact.  
 
