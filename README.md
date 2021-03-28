@@ -1,23 +1,23 @@
 # vipra-CPM
- This is a Contact Manager Program built as a part of interview task
+ This is a Contact Manager Program built as a part of interview task. This will allow the user to add, edit, delete and view the saved contacts
 
 # Technologies Used
 Node.js, Express.js, MongoDB, Mongoose, EJS and jQuery AJAX REST API.
 
 # Installation in local
-You need to have installed Node.js, NPM and MongoDB in your System
+As a pre-requisite, You need to have NodeJS, NPM and MongoDB installed on your System to run the program
 
 ## To Install
 
-`npm install`
+Run `npm install` to install the Node Package Module
 
 ## Run
 
-`npm start` 
+once we connect Mongo DB with the local server run `npm start` to confirm the connection
 
 ## Test
 
-`./node_modules/.bin/mocha`
+Run `./node_modules/.bin/mocha` in the terminal to run the test cases
 
  * The test results will be shown as below
 
@@ -34,8 +34,8 @@ Code is Running on
 
 # REST API
  1. POST/api/contact/
-    THis is the API used by the user to submit the input file to create the contacts, which have three fields to fill to add the contact like Name,Email,and Mobile number.
-
+    This is the API used by the user to submit the input file to create the contacts, which has three fields to be filled to add the Contact, namely - Name, Email and Mobile number.
+    
    # Response:200 OK
       * POST /api/contact HTTP/1.1
         Host: localhost:3000
@@ -51,10 +51,10 @@ Code is Running on
       "Success: Contact created successfully"  
 
  2. GET/api/contact/1
-    This is the API used by the user to get the contacts.
+    This is the API used by the user to retrieve the contacts from the Database.
 
  3. PUT/api/contact/<:id>
-    This is the API used by the user to update the contact by specifying the object unique id.
+    This is the API used by the user to update the contact details by specifying the object unique id.
 
     # Response:200 OK "Updated contact successfully"
        * Before updating:   
