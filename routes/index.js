@@ -1,8 +1,8 @@
-
+/* eslint-disable linebreak-style */
 /* eslint-disable indent */
-
+/* eslint-disable linebreak-style */
 /* eslint-disable no-unused-vars */
-
+/* eslint-disable linebreak-style */
 const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
@@ -12,12 +12,30 @@ router.get('/', function(req, res, next) {
   res.render('index', {title: 'Express'});
 });
 
+
+router.get('/', function(req, res, next) {
+  return Contact.find(function(err, clients) {
+    if (!err) {
+      res.render('detail.ejs', {
+        title: 'Details',
+        clients: clients,
+
+      });
+
+      //  console.log(clients);
+    } else {
+      return console.log(err);
+    }
+  });
+});
+
 /**
  * @Create the contact
  */
-router.post('/api/contact', function(req, res, next) {
+
+router.post('/contact', function(req, res, next) {
   console.log(req.body);
-  //res.json(req.body);
+  // res.json(req.body);
   const contactInfo = req.body;
 
   if (!contactInfo.name || !contactInfo.email || !contactInfo.mobile) {
@@ -37,62 +55,59 @@ router.post('/api/contact', function(req, res, next) {
         mobile: contactInfo.mobile,
       });
 
-      newContact.save(function(err2, cnt) {
-        if (err2) {
-          console.log(err2);
-          res.json({Status: '500', "message": "Internal Server Error: Failed to add a contact"})
-        } else {
+      newContact.save(function(err, Contact) {
+        if (err) {
+          console.log(err);
+} else {
           console.log('Success');
-          res.json({Status: '200', "message": "Success: Contact created successfully"});
-        }
+}
       });
-  });
+    }).sort({_id: -1}).limit(1);
   }
-
+  res.json({Success: '1'});
 });
+
 /**
- * @GET Lists all the contact
+ * @GET list of all the contact
  */
-router.get('/api/contact', function(req, res, next) {
+
+router.get('/contact', function(req, res, next) {
   Contact.find(function(err, response) {
-    if(err) return res.status(500).send(err.message);
     res.json(response);
   });
 });
 
 /**
- * @Update the one single contact using id as a key
+ * @UPDATE the one single contact using id as a key
  */
-router.put('/api/contact/:id', function(req, res) {
+
+router.put('/contact/:id', function(req, res) {
   const id = req.params.id;
   console.log('id' + id);
   const contactInfo = req.body;
-  console.log("contact info", contactInfo);
-  
-  Contact.findOneAndUpdate({'unique_id': req.params.id},{
-    name : contactInfo.name || name,
-    email : contactInfo.email || email,
-    mobile : contactInfo.mobile || contact
-  }, {upsert: true}, 
-   function(err, result) {
-    if(err) return res.status(500).send(err.message);
-    res.status(200).json({"message" : "Updated contact successfully", "Contact" : contactInfo});
-   });
+  console.log(contactInfo);
+
+  Contact.update({unique_id: id}, {
+    name: contactInfo.name,
+    email: contactInfo.email,
+    mobile: contactInfo.mobile,
+  }, function(err, rawResponse) {
+    console.log(rawResponse);
   });
+});
 
 /**
- * @Delete the contact for the provided id
+ * @DELETE the contact for the provided id
  */
-router.delete('/api/contact/:id', function(req, res) {
+
+router.delete('/contact/:id', function(req, res) {
   const id = req.params.id;
   console.log('id' + id);
 
   Contact.findOneAndRemove({'unique_id': id}, function(err, offer) {
-    if(err) 
-      return res.status(500).send(err.message);
-    res.status(200).json({"message" : "Deleted contact successfully", id});
+    console.log('asa');
   });
-  
+  res.send('Success');
 });
 
 module.exports = router;
