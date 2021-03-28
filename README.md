@@ -64,4 +64,15 @@ Code is Running on
    4. DELETE/api/contact/<:id>
       This is API used by the user to delete the existing contact.  
 
-      Response:200 OK "Deleted contact successfully"   
+      Response:200 OK "Deleted contact successfully"  
+      * DELETE /api/contact/1 HTTP/1.1
+        Host: localhost:3000
+        Content-Type: application/json
+        Cache-Control: no-cache
+        Postman-Token: 6dd4d91f-4e0d-2b7b-4d04-e6a6665b568f
+
+     {
+	"name":"tom",
+	"email":"tom123@vipra.com",
+	"mobile":"99860786543"
+     }
